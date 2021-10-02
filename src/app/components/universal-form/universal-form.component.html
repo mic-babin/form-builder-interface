@@ -1,0 +1,26 @@
+<form class="container" [formGroup]="universalForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="mb-3 d-inline" *ngFor="let formElem of universalFormTemplate" [ngClass]="formElem.col || col-12">
+            <div class="d-inline" [ngSwitch]="formElem.type" >
+                <div *ngSwitchCase="'textBox'" >
+                    <label class="d-block" for="{{formElem.label}}">{{formElem.label}}</label>
+                    <input class="d-block" type="text" formControlName="{{formElem.label}}" />
+                 </div>
+                <div *ngSwitchCase="'number'">
+                    <label class="d-block" for="{{formElem.label}}">{{formElem.label}}</label>
+                    <input class="d-block" type="number" formControlName="{{formElem.label}}"/>
+                </div>
+                <div *ngSwitchCase="'select'">
+                    <label class="d-block" for="{{formElem.label}}">{{formElem.label}}</label>
+                    <select class="d-block" formControlName="{{formElem.label}}">
+                        <option *ngFor="let opt of formElem.options">
+                            {{opt}}
+                        </option>
+                    </select>
+                </div>
+            </div>  
+        </div>
+        <button class="btn btn-primary" style="max-width: 200px" type="submit">Send</button>
+    </div>
+</form>
+
